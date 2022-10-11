@@ -15,6 +15,27 @@ const supportTableValues = {
     "Other requirements specific to my business may include:<br />(List any that apply in the comments column, here are some examples)<ul><li>My product is subject to Xray screening, and this may damage digital loggers</li><li>Airfreight/seafreight approval is part of my supply chain process</li><li>My product is often subject to additional stickering by other business along the supply chain for transport and logistics purposes</li><li>Logging temperature during transport is essential for demonstrating food safety/customer compliance along the supply chain</li></ul>",
 };
 
+// Dev functions
+function goTree1() {
+  $("#tree1Row").show();
+  $("#tree1Row").attr("aria-hidden", "false");
+  $("#tree2Row").hide();
+  $("#tree2Row").attr("aria-hidden", "true");
+  resetForms();
+}
+function goTree2() {
+  transitionTables();
+  resetForms();
+}
+function limitWidth() {
+  $("#tree1Row>.col").css("max-width", "600px");
+  $("#tree2Row>.col").css("max-width", "600px");
+}
+function fullWidth() {
+  $("#tree1Row>.col").css("max-width", "100%");
+  $("#tree2Row>.col").css("max-width", "100%");
+}
+
 // functions
 function recodeReasons(text) {
   return text
