@@ -13,8 +13,8 @@
   </head>
   <body>
     <div class="container-fluid">
-      <div class="row">
-        <div class="col align-self-center m-4" style="max-width: 600px">
+      <div class="row" id="tree1Row">
+        <div class="col align-self-center m-4">
           <div class="card">
             <div class="card-header">
               <div class="row">
@@ -30,8 +30,8 @@
                 <div class="col" style="max-width: min-content">
                   <button
                     class="btn btn-light float-end"
-                    id="refreshTree"
-                    onclick="javascript: $('#start-tab').tab('show')"
+                    id="refreshTree1"
+                    onclick="javascript: resetForms()"
                     type="button"
                     aria-label="refresh"
                   >
@@ -47,7 +47,7 @@
             <div class="card-body">
               <ul
                 class="nav nav-tabs"
-                id="tabset"
+                id="tree1Tabset"
                 aria-hidden="true"
                 style="display: none"
               >
@@ -291,9 +291,9 @@
                       class="form-check-input"
                       type="checkbox"
                       value=""
-                      id="foodSafe"
+                      id="t1foodSafe"
                     />
-                    <label class="form-check-label" for="foodSafe">
+                    <label class="form-check-label" for="t1foodSafe">
                       Food safety (descriptor for each)
                     </label>
                   </div>
@@ -302,9 +302,9 @@
                       class="form-check-input"
                       type="checkbox"
                       value=""
-                      id="marketAccess"
+                      id="t1marketAccess"
                     />
-                    <label class="form-check-label" for="marketAccess">
+                    <label class="form-check-label" for="t1marketAccess">
                       Market access
                     </label>
                   </div>
@@ -313,9 +313,9 @@
                       class="form-check-input"
                       type="checkbox"
                       value=""
-                      id="biosecurity"
+                      id="t1biosecurity"
                     />
-                    <label class="form-check-label" for="biosecurity">
+                    <label class="form-check-label" for="t1biosecurity">
                       Biosecurity
                     </label>
                   </div>
@@ -324,9 +324,9 @@
                       class="form-check-input"
                       type="checkbox"
                       value=""
-                      id="provenance"
+                      id="t1provenance"
                     />
-                    <label class="form-check-label" for="provenance">
+                    <label class="form-check-label" for="t1provenance">
                       Provenance (location)
                     </label>
                   </div>
@@ -335,9 +335,9 @@
                       class="form-check-input"
                       type="checkbox"
                       value=""
-                      id="certifications"
+                      id="t1certifications"
                     />
-                    <label class="form-check-label" for="certifications">
+                    <label class="form-check-label" for="t1certifications">
                       Product attributes and certifications
                     </label>
                   </div>
@@ -346,9 +346,9 @@
                       class="form-check-input"
                       type="checkbox"
                       value=""
-                      id="productivity"
+                      id="t1productivity"
                     />
-                    <label class="form-check-label" for="productivity">
+                    <label class="form-check-label" for="t1productivity">
                       Productivity and supply chain efficiency
                     </label>
                   </div>
@@ -441,12 +441,282 @@
                     <button
                       class="btn btn-primary"
                       style="width: 80%"
+                      onclick="javasript: transitionTables()"
                       type="button"
                     >
                       Start Decision tree 2:<br />What traceability system is
                       right for your business?
                     </button>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" id="tree2Row" style="display: none" aria-hidden="true">
+        <div class="col align-self-center m-4">
+          <div class="card">
+            <div class="card-header">
+              <div class="row">
+                <div class="col">
+                  <h5 style="display: inline">
+                    Decision tree 2<br />
+                    <small class="text-muted"
+                      >What traceability system is right for your
+                      business?</small
+                    >
+                  </h5>
+                </div>
+                <div class="col" style="max-width: min-content">
+                  <button
+                    class="btn btn-light float-end"
+                    id="refreshTree2"
+                    onclick="javascript: resetForms()"
+                    type="button"
+                    aria-label="refresh"
+                  >
+                    <img
+                      src="images/arrows-rotate-solid.svg"
+                      alt="refresh"
+                      style="height: 1.2rem"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <ul
+                class="nav nav-tabs"
+                id="tree2Tabset"
+                aria-hidden="true"
+                style="display: none"
+              >
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link active"
+                    id="important-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#important"
+                    type="button"
+                    role="tab"
+                  >
+                    important
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    id="exit-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#exit"
+                    type="button"
+                    role="tab"
+                  >
+                    exit
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    id="support-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#support"
+                    type="button"
+                    role="tab"
+                  >
+                    support
+                  </button>
+                </li>
+              </ul>
+              <div id="tree2Content" class="tab-content">
+                <div
+                  class="tab-pane fade active show"
+                  id="important"
+                  role="tabpanel"
+                  tabindex="0"
+                >
+                  <div
+                    class="bg-secondary my-3"
+                    style="
+                      margin-left: -1rem;
+                      padding-left: 1rem;
+                      margin-right: -1rem;
+                      padding-right: 1rem;
+                    "
+                  >
+                    <h6
+                      class="display-6"
+                      style="
+                        font-size: 1.8rem;
+                        font-family: 'VIC-Regular';
+                        padding-left: 3.1rem;
+                        text-indent: -3.1rem;
+                      "
+                    >
+                      <span class="text-muted">Q1.</span> What are the important
+                      elements of traceability for your business and the
+                      businesses you supply?
+                    </h6>
+                  </div>
+                  The reasons why a traceability system could be valuable in
+                  your business often relate to at least one of the six key
+                  drivers of traceability (tick all boxes that apply to your
+                  business and those you supply):
+                  <div class="form-check mt-3">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="foodSafe"
+                    />
+                    <label class="form-check-label" for="foodSafe">
+                      Food safety (descriptor for each)
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="marketAccess"
+                    />
+                    <label class="form-check-label" for="marketAccess">
+                      Market access
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="biosecurity"
+                    />
+                    <label class="form-check-label" for="biosecurity">
+                      Biosecurity
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="provenance"
+                    />
+                    <label class="form-check-label" for="provenance">
+                      Provenance (location)
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="certifications"
+                    />
+                    <label class="form-check-label" for="certifications">
+                      Product attributes and certifications
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="productivity"
+                    />
+                    <label class="form-check-label" for="productivity">
+                      Productivity and supply chain efficiency
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="notImportant"
+                    />
+                    <label class="form-check-label" for="notImportant">
+                      <i>Traceability is not important to my business</i>
+                    </label>
+                  </div>
+                  <div class="text-center mt-3">
+                    <button
+                      class="btn btn-primary disabled"
+                      style="width: 80%"
+                      onclick="javascript: t2Continue()"
+                      type="button"
+                      id="t2Continue"
+                    >
+                      Next
+                    </button>
+                  </div>
+                </div>
+                <div
+                  class="tab-pane fade"
+                  id="exit"
+                  role="tabpanel"
+                  tabindex="0"
+                >
+                  No immediate action necessary. It is recommended to monitor
+                  your industry and the supply chain for signs that traceability
+                  is required. Visit
+                  <a
+                    href="https://agriculture.vic.gov.au/traceability"
+                    target="_blank"
+                    >agriculture.vic.gov.au/traceability</a
+                  >
+                  if and when you’re ready to start your traceability journey.
+                </div>
+                <div
+                  class="tab-pane fade"
+                  id="support"
+                  role="tabpanel"
+                  tabindex="0"
+                >
+                  A fit-for-purpose traceability system does not involve making
+                  <b>radical</b> changes to a business's operational processes.
+                  It should <b>fit into and adapt</b> to how the business
+                  operates and make financial sense.
+                  <div
+                    class="bg-secondary my-3"
+                    style="
+                      margin-left: -1rem;
+                      padding-left: 1rem;
+                      margin-right: -1rem;
+                      padding-right: 1rem;
+                    "
+                  >
+                    <h6
+                      class="display-6"
+                      style="
+                        font-size: 1.8rem;
+                        font-family: 'VIC-Regular';
+                        padding-left: 3.2rem;
+                        text-indent: -3.2rem;
+                      "
+                    >
+                      <span class="text-muted">Q2.</span> How can a traceability
+                      system support your business operations and processes?
+                    </h6>
+                  </div>
+                  Think about how it will:
+                  <ul>
+                    <li>fit with your daily operations</li>
+                    <li>
+                      align with the systems your supply chain customers use
+                    </li>
+                  </ul>
+                  <table class="table table-striped my-4" id="supportTable">
+                    <thead>
+                      <tr>
+                        <th scope="col">Consideration</th>
+                        <th scope="col">Required</th>
+                        <th scope="col">List your requirements</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
                 </div>
               </div>
             </div>

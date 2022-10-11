@@ -4,7 +4,8 @@
   "description": "Web components for traceability content",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel src/index.html"
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.7.0",
-    "parcel": "^2.7.0"
+    "parcel": "^2.7.0",
+    "purgecss": "^5.0.0"
   }
 }

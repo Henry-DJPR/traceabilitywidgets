@@ -21,21 +21,22 @@
     url("../fonts/VIC-Regular.ttf") format("truetype");
 }
 
-@font-face {
-  font-family: "VIC-Bold";
-  font-style: normal;
-  src: url("../fonts/VIC-Bold.eot");
-  src: url("../fonts/VIC-Bold-iefix.eot?#iefix") format("embedded-opentype"),
-    url("../fonts/VIC-Bold.woff2") format("woff2"),
-    url("../fonts/VIC-Bold.woff") format("woff"),
-    url("../fonts/VIC-Bold.ttf") format("truetype");
-}
+// @font-face {
+//   font-family: "VIC-Bold";
+//   font-style: normal;
+//   src: url("../fonts/VIC-Bold.eot");
+//   src: url("../fonts/VIC-Bold-iefix.eot?#iefix") format("embedded-opentype"),
+//     url("../fonts/VIC-Bold.woff2") format("woff2"),
+//     url("../fonts/VIC-Bold.woff") format("woff"),
+//     url("../fonts/VIC-Bold.ttf") format("truetype");
+// }
 
 // 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
 @import "~bootstrap/scss/functions";
 
 // 2. Include any default variable overrides here
 $primary: #4d7335;
+$secondary: #e3edeb;
 $headings-font-family: VIC-SemiBold;
 $font-family-sans-serif: VIC-Regular;
 $component-active-bg: $primary;
@@ -44,6 +45,15 @@ $component-active-bg: $primary;
 @import "~bootstrap/scss/variables";
 
 // 4. Include any default map overrides here
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+);
+
+$colors: (
+  "black": $black,
+  "white": $white,
+);
 
 // 5. Include remainder of required parts
 @import "~bootstrap/scss/maps";
@@ -57,6 +67,8 @@ $component-active-bg: $primary;
 @import "~bootstrap/scss/containers";
 @import "~bootstrap/scss/grid";
 @import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/tables";
+@import "~bootstrap/scss/forms";
 @import "~bootstrap/scss/helpers";
 @import "~bootstrap/scss/nav";
 @import "~bootstrap/scss/navbar";
@@ -65,7 +77,3 @@ $component-active-bg: $primary;
 @import "~bootstrap/scss/card";
 @import "~bootstrap/scss/utilities";
 @import "~bootstrap/scss/utilities/api";
-
-// 7. fontawesome
-// @import "~fontawesome-free/scss/fontawesome.scss";
-// @import "~fontawesome-free/scss/solid.scss";
