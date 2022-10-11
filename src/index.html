@@ -4,7 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="./scss/custom.scss" rel="stylesheet" />
-    <script type="module" src="./js/app.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script
+      type="module"
+      src="../node_modules/bootstrap/js/dist/tab.js"
+    ></script>
+    <script src="./js/app.js"></script>
   </head>
   <body>
     <div class="container-fluid">
@@ -12,309 +17,435 @@
         <div class="col align-self-center m-4" style="max-width: 600px">
           <div class="card">
             <div class="card-header">
-              <span class="font-weight-bold"
-                >Traceability Decision Tree Demo</span
-              >
-              <button
-                class="btn btn-default action-button float-right shiny-bound-input"
-                id="refreshTree"
-                onclick='javascript: $(".decisionTree .nav a").first().tab("show")'
-                type="button"
-              >
-                <i
-                  class="fa fa-rotate"
-                  role="presentation"
-                  aria-label="rotate icon"
-                ></i>
-              </button>
+              <div class="row">
+                <div class="col">
+                  <h5 style="display: inline">
+                    Decision tree 1<br />
+                    <small class="text-muted"
+                      >Do you currently have a traceability system in your
+                      business?</small
+                    >
+                  </h5>
+                </div>
+                <div class="col" style="max-width: min-content">
+                  <button
+                    class="btn btn-light float-end"
+                    id="refreshTree"
+                    onclick="javascript: $('#start-tab').tab('show')"
+                    type="button"
+                    aria-label="refresh"
+                  >
+                    <img
+                      src="images/arrows-rotate-solid.svg"
+                      alt="refresh"
+                      style="height: 1.2rem"
+                    />
+                  </button>
+                </div>
+              </div>
             </div>
             <div class="card-body">
-              <div class="tabbable decisionTree">
-                <ul
-                  class="nav nav-hidden"
-                  data-tabsetid="4067"
-                  style="display: none"
+              <ul
+                class="nav nav-tabs"
+                id="tabset"
+                aria-hidden="true"
+                style="display: none"
+              >
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link active"
+                    id="start-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#start"
+                    type="button"
+                    role="tab"
+                  >
+                    start
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    id="delivers-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#delivers"
+                    type="button"
+                    role="tab"
+                  >
+                    delivers
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    id="considering-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#considering"
+                    type="button"
+                    role="tab"
+                  >
+                    considering
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    id="emerging-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#emerging"
+                    type="button"
+                    role="tab"
+                  >
+                    emerging
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    id="fit-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#fit"
+                    type="button"
+                    role="tab"
+                  >
+                    fit
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    id="reasons-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#reasons"
+                    type="button"
+                    role="tab"
+                  >
+                    reasons
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    id="noaction-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#noaction"
+                    type="button"
+                    role="tab"
+                  >
+                    noaction
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    id="dt2start-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#dt2start"
+                    type="button"
+                    role="tab"
+                  >
+                    dt2start
+                  </button>
+                </li>
+              </ul>
+              <div class="tab-content">
+                <div
+                  class="tab-pane fade active show"
+                  id="start"
+                  role="tabpanel"
+                  tabindex="0"
                 >
-                  <li class="nav-item">
-                    <a
-                      href="#tab-4067-1"
-                      data-toggle="tab"
-                      data-bs-toggle="tab"
-                      class="nav-link"
-                    ></a>
-                  </li>
-                  <li class="nav-item">
-                    <a
-                      href="#tab-4067-2"
-                      data-toggle="tab"
-                      data-bs-toggle="tab"
-                      data-value="_Yes"
-                      class="nav-link"
-                      >_Yes</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a
-                      href="#tab-4067-3"
-                      data-toggle="tab"
-                      data-bs-toggle="tab"
-                      data-value="_Yes_Yes"
-                      class="nav-link"
-                      >_Yes_Yes</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a
-                      href="#tab-4067-4"
-                      data-toggle="tab"
-                      data-bs-toggle="tab"
-                      data-value="_Yes_Yes_Yes"
-                      class="nav-link"
-                      >_Yes_Yes_Yes</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a
-                      href="#tab-4067-5"
-                      data-toggle="tab"
-                      data-bs-toggle="tab"
-                      data-value="_Yes_Yes_No"
-                      class="nav-link"
-                      >_Yes_Yes_No</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a
-                      href="#tab-4067-6"
-                      data-toggle="tab"
-                      data-bs-toggle="tab"
-                      data-value="_Yes_No"
-                      class="nav-link"
-                      >_Yes_No</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a
-                      href="#tab-4067-7"
-                      data-toggle="tab"
-                      data-bs-toggle="tab"
-                      data-value="_No"
-                      class="nav-link"
-                      >_No</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a
-                      href="#tab-4067-8"
-                      data-toggle="tab"
-                      data-bs-toggle="tab"
-                      data-value="_No_Yes"
-                      class="nav-link"
-                      >_No_Yes</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a
-                      href="#tab-4067-9"
-                      data-toggle="tab"
-                      data-bs-toggle="tab"
-                      data-value="_No_No"
-                      class="nav-link active"
-                      >_No_No</a
-                    >
-                  </li>
-                </ul>
-                <div class="tab-content" data-tabsetid="4067">
-                  <div class="tab-pane" id="tab-4067-1">
-                    <div class="row p-4">
-                      <div class="col text-center">
-                        Do you currently have a traceability system in your
-                        business?
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col text-center">
-                        <button
-                          class="btn btn-default action-button btn-secondary shiny-bound-input"
-                          id="-Yes"
-                          onclick='javascript: $("a[data-value=_Yes]").tab("show");'
-                          style="width: 80%"
-                          type="button"
-                        >
-                          Yes
-                        </button>
-                      </div>
-                      <div class="col text-center">
-                        <button
-                          class="btn btn-default action-button btn-secondary shiny-bound-input"
-                          id="-No"
-                          onclick='javascript: $("a[data-value=_No]").tab("show");'
-                          style="width: 80%"
-                          type="button"
-                        >
-                          No
-                        </button>
-                      </div>
+                  <div class="row p-4">
+                    <div class="col text-center">
+                      Do you currently have a traceability system in your
+                      business?
                     </div>
                   </div>
-                  <div class="tab-pane" data-value="_Yes" id="tab-4067-2">
-                    <div class="row p-4">
-                      <div class="col text-center">
-                        Does your current traceability system deliver on the
-                        benefits that are important to your business and the
-                        businesses you supply?
-                      </div>
+                  <div class="row">
+                    <div class="col text-center">
+                      <button
+                        class="btn btn-primary"
+                        onclick='javascript: $("#delivers-tab").tab("show");'
+                        style="width: 80%"
+                        type="button"
+                      >
+                        Yes
+                      </button>
                     </div>
-                    <div class="row">
-                      <div class="col text-center">
-                        <button
-                          class="btn btn-default action-button btn-secondary shiny-bound-input"
-                          id="_Yes-Yes"
-                          onclick='javascript: $("a[data-value=_Yes_Yes]").tab("show");'
-                          style="width: 80%"
-                          type="button"
-                        >
-                          Yes
-                        </button>
-                      </div>
-                      <div class="col text-center">
-                        <button
-                          class="btn btn-default action-button btn-secondary shiny-bound-input"
-                          id="_Yes-No"
-                          onclick='javascript: $("a[data-value=_Yes_No]").tab("show");'
-                          style="width: 80%"
-                          type="button"
-                        >
-                          No
-                        </button>
-                      </div>
+                    <div class="col text-center">
+                      <button
+                        class="btn btn-primary"
+                        onclick='javascript: $("#considering-tab").tab("show");'
+                        style="width: 80%"
+                        type="button"
+                      >
+                        No
+                      </button>
                     </div>
                   </div>
-                  <div class="tab-pane" data-value="_Yes_Yes" id="tab-4067-3">
-                    <div class="row p-4">
-                      <div class="col text-center">
-                        Does your current system meet the emerging market needs
-                        for quick and connected traceability along your supply
-                        chain?
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col text-center">
-                        <button
-                          class="btn btn-default action-button btn-secondary shiny-bound-input"
-                          id="_Yes_Yes-Yes"
-                          onclick='javascript: $("a[data-value=_Yes_Yes_Yes]").tab("show");'
-                          style="width: 80%"
-                          type="button"
-                        >
-                          Yes
-                        </button>
-                      </div>
-                      <div class="col text-center">
-                        <button
-                          class="btn btn-default action-button btn-secondary shiny-bound-input"
-                          id="_Yes_Yes-No"
-                          onclick='javascript: $("a[data-value=_Yes_Yes_No]").tab("show");'
-                          style="width: 80%"
-                          type="button"
-                        >
-                          No
-                        </button>
-                      </div>
+                </div>
+                <div
+                  class="tab-pane fade"
+                  id="delivers"
+                  role="tabpanel"
+                  tabindex="0"
+                >
+                  <div class="row p-4">
+                    <div class="col text-center">
+                      Does your current traceability system deliver on the
+                      benefits that are important to your business and the
+                      businesses you supply?
                     </div>
                   </div>
-                  <div
-                    class="tab-pane"
-                    data-value="_Yes_Yes_Yes"
-                    id="tab-4067-4"
+                  <div class="row">
+                    <div class="col text-center">
+                      <button
+                        class="btn btn-primary"
+                        onclick='javascript: $("#emerging-tab").tab("show");'
+                        style="width: 80%"
+                        type="button"
+                      >
+                        Yes
+                      </button>
+                    </div>
+                    <div class="col text-center">
+                      <button
+                        class="btn btn-primary"
+                        onclick='javascript: $("#reasons-tab").tab("show");'
+                        style="width: 80%"
+                        type="button"
+                      >
+                        No
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="tab-pane fade"
+                  id="emerging"
+                  role="tabpanel"
+                  tabindex="0"
+                >
+                  <div class="row p-4">
+                    <div class="col text-center">
+                      Does your current system meet the emerging market needs
+                      for quick and connected traceability along your supply
+                      chain?
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col text-center">
+                      <button
+                        class="btn btn-primary"
+                        onclick='javascript: $("#fit-tab").tab("show");'
+                        style="width: 80%"
+                        type="button"
+                      >
+                        Yes
+                      </button>
+                    </div>
+                    <div class="col text-center">
+                      <button
+                        class="btn btn-primary"
+                        onclick='javascript: $("#reasons-tab").tab("show");'
+                        style="width: 80%"
+                        type="button"
+                      >
+                        No
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="tab-pane fade"
+                  id="fit"
+                  role="tabpanel"
+                  tabindex="0"
+                >
+                  Your current system is fit for meeting future market needs, it
+                  is not recommended to consider investing in a new system.
+                  Monitor your supply chain for the signs that your traceability
+                  system needs to be reviewed. Eg. Moving from a
+                  spreadsheet-based system to one that’s digitally connected and
+                  talks to other business’ systems in your supply chain. Visit
+                  <a
+                    href="https://agriculture.vic.gov.au/traceability"
+                    target="_blank"
+                    >agriculture.vic.gov.au/traceability</a
                   >
-                    Your current system is fit for meeting future market needs,
-                    it is not recommended to consider investing in a new system.
-                    Monitor your supply chain for the signs that your
-                    traceability system needs to be reviewed. Eg. Moving from a
-                    spreadsheet-based system to one that’s digitally connected
-                    and talks to other business’ systems in your supply chain.
-                    Visit agriculture.vic.gov.au/traceability
+                </div>
+                <div
+                  class="tab-pane fade"
+                  id="reasons"
+                  role="tabpanel"
+                  tabindex="0"
+                >
+                  What are the important elements of traceability for your
+                  business and the businesses you supply? The reasons why a
+                  traceability system could be valuable in your business often
+                  relate to at least one of the six key drivers of traceability
+                  (tick all boxes that apply to your business and those you
+                  supply):
+                  <div class="form-check mt-3">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="foodSafe"
+                    />
+                    <label class="form-check-label" for="foodSafe">
+                      Food safety (descriptor for each)
+                    </label>
                   </div>
-                  <div
-                    class="tab-pane"
-                    data-value="_Yes_Yes_No"
-                    id="tab-4067-5"
-                  >
-                    What are the important elements of traceability for your
-                    business and the businesses you supply? The reasons why a
-                    traceability system could be valuable in your business often
-                    relate to at least one of the six key drivers of
-                    traceability (tick all boxes that apply to your business and
-                    those you supply): • Food safety (descriptor for each) •
-                    Market access • Biosecurity • Provenance (location) •
-                    Product attributes and certifications • Productivity and
-                    supply chain efficiency
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="marketAccess"
+                    />
+                    <label class="form-check-label" for="marketAccess">
+                      Market access
+                    </label>
                   </div>
-                  <div class="tab-pane" data-value="_Yes_No" id="tab-4067-6">
-                    What are the important elements of traceability for your
-                    business and the businesses you supply? The reasons why a
-                    traceability system could be valuable in your business often
-                    relate to at least one of the six key drivers of
-                    traceability (tick all boxes that apply to your business and
-                    those you supply): • Food safety (descriptor for each) •
-                    Market access • Biosecurity • Provenance (location) •
-                    Product attributes and certifications • Productivity and
-                    supply chain efficiency
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="biosecurity"
+                    />
+                    <label class="form-check-label" for="biosecurity">
+                      Biosecurity
+                    </label>
                   </div>
-                  <div class="tab-pane" data-value="_No" id="tab-4067-7">
-                    <div class="row p-4">
-                      <div class="col text-center">
-                        Are you considering implementing a traceability system
-                        in your business in the near future?
-                      </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="provenance"
+                    />
+                    <label class="form-check-label" for="provenance">
+                      Provenance (location)
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="certifications"
+                    />
+                    <label class="form-check-label" for="certifications">
+                      Product attributes and certifications
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="productivity"
+                    />
+                    <label class="form-check-label" for="productivity">
+                      Productivity and supply chain efficiency
+                    </label>
+                  </div>
+                  <div class="text-center">
+                    <button
+                      class="btn btn-primary mt-3 ms-2 disabled"
+                      onclick='javascript: $("#dt2start-tab").tab("show");'
+                      style="width: 50%"
+                      type="button"
+                      id="dt2startButton"
+                    >
+                      Next
+                    </button>
+                  </div>
+                </div>
+                <div
+                  class="tab-pane fade"
+                  id="considering"
+                  role="tabpanel"
+                  tabindex="0"
+                >
+                  <div class="row p-4">
+                    <div class="col text-center">
+                      Are you considering implementing a traceability system in
+                      your business in the near future?
                     </div>
-                    <div class="row">
-                      <div class="col text-center">
-                        <button
-                          class="btn btn-default action-button btn-secondary shiny-bound-input"
-                          id="_No-Yes"
-                          onclick='javascript: $("a[data-value=_No_Yes]").tab("show");'
-                          style="width: 80%"
-                          type="button"
-                        >
-                          Yes
-                        </button>
-                      </div>
-                      <div class="col text-center">
-                        <button
-                          class="btn btn-default action-button btn-secondary shiny-bound-input"
-                          id="_No-No"
-                          onclick='javascript: $("a[data-value=_No_No]").tab("show");'
-                          style="width: 80%"
-                          type="button"
-                        >
-                          No
-                        </button>
-                      </div>
+                  </div>
+                  <div class="row">
+                    <div class="col text-center">
+                      <button
+                        class="btn btn-primary"
+                        onclick='javascript: $("#reasons-tab").tab("show");'
+                        style="width: 80%"
+                        type="button"
+                      >
+                        Yes
+                      </button>
+                    </div>
+                    <div class="col text-center">
+                      <button
+                        class="btn btn-primary"
+                        onclick='javascript: $("#noaction-tab").tab("show");'
+                        style="width: 80%"
+                        type="button"
+                      >
+                        No
+                      </button>
                     </div>
                   </div>
-                  <div class="tab-pane" data-value="_No_Yes" id="tab-4067-8">
-                    What are the important elements of traceability for your
-                    business and the businesses you supply? The reasons why a
-                    traceability system could be valuable in your business often
-                    relate to at least one of the six key drivers of
-                    traceability (tick all boxes that apply to your business and
-                    those you supply): • Food safety (descriptor for each) •
-                    Market access • Biosecurity • Provenance (location) •
-                    Product attributes and certifications • Productivity and
-                    supply chain efficiency
-                  </div>
-                  <div
-                    class="tab-pane active"
-                    data-value="_No_No"
-                    id="tab-4067-9"
+                </div>
+                <div
+                  class="tab-pane fade"
+                  id="noaction"
+                  role="tabpanel"
+                  tabindex="0"
+                >
+                  No immediate action necessary. It is recommended to monitor
+                  your industry and the supply chain for signs that traceability
+                  is required. Visit
+                  <a
+                    href="https://agriculture.vic.gov.au/traceability"
+                    target="_blank"
+                    >agriculture.vic.gov.au/traceability</a
                   >
-                    No immediate action necessary. It is recommended to monitor
-                    your industry and the supply chain for signs that
-                    traceability is required. Visit
-                    agriculture.vic.gov.au/traceability if and when you’re ready
-                    to start your traceability journey.
+                  if and when you’re ready to start your traceability journey.
+                </div>
+                <div
+                  class="tab-pane fade"
+                  id="dt2start"
+                  role="tabpanel"
+                  tabindex="0"
+                >
+                  It is recommended that your business consider investing in a
+                  new or upgraded traceability system. These are the key drivers
+                  your business is interested in focusing on in relation to
+                  traceability:
+                  <ul id="interestedList">
+                    <li>Error</li>
+                  </ul>
+                  Complete the Quick Start Guide by visiting
+                  <a
+                    href="https://agriculture.vic.gov.au/traceability"
+                    target="_blank"
+                    >agriculture.vic.gov.au/traceability</a
+                  >
+                  to understand how traceability can work in your business,
+                  prepare you with a business case and for an initial
+                  conversation with a technology provider.<br />
+                  <div class="text-center mt-3">
+                    <button
+                      class="btn btn-primary"
+                      style="width: 80%"
+                      type="button"
+                    >
+                      Start Decision tree 2:<br />What traceability system is
+                      right for your business?
+                    </button>
                   </div>
                 </div>
               </div>

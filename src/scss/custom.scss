@@ -35,28 +35,10 @@
 @import "~bootstrap/scss/functions";
 
 // 2. Include any default variable overrides here
-$primary: #5a7e7e;
-$headings-font-family: "VIC-Bold";
-$font-family-sans-serif: "VIC-Regular",
-  // Cross-platform generic font family (default user interface font)
-  system-ui,
-  // Safari for macOS and iOS (San Francisco)
-  -apple-system,
-  // Windows
-  "Segoe UI",
-  // Android
-  Roboto,
-  // older macOS and iOS
-  "Helvetica Neue" // Linux
-  "Noto Sans",
-  "Liberation Sans",
-  // Basic web fallback
-  Arial,
-  // Sans serif fallback
-  sans-serif,
-  // Emoji fonts
-  "Apple Color Emoji",
-  "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$primary: #4d7335;
+$headings-font-family: VIC-SemiBold;
+$font-family-sans-serif: VIC-Regular;
+$component-active-bg: $primary;
 
 // 3. Include remainder of required Bootstrap stylesheets
 @import "~bootstrap/scss/variables";
@@ -72,17 +54,18 @@ $font-family-sans-serif: "VIC-Regular",
 @import "~bootstrap/scss/root";
 @import "~bootstrap/scss/reboot";
 @import "~bootstrap/scss/type";
-@import "~bootstrap/scss/images";
 @import "~bootstrap/scss/containers";
 @import "~bootstrap/scss/grid";
-@import "~bootstrap/scss/badge";
 @import "~bootstrap/scss/buttons";
 @import "~bootstrap/scss/helpers";
 @import "~bootstrap/scss/nav";
 @import "~bootstrap/scss/navbar";
-@import "~bootstrap/scss/pagination";
 @import "~bootstrap/scss/progress";
 @import "~bootstrap/scss/transitions";
 @import "~bootstrap/scss/card";
 @import "~bootstrap/scss/utilities";
 @import "~bootstrap/scss/utilities/api";
+
+// 7. fontawesome
+// @import "~fontawesome-free/scss/fontawesome.scss";
+// @import "~fontawesome-free/scss/solid.scss";
