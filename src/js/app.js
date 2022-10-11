@@ -169,4 +169,7 @@ $(function () {
   ).change(collateT2Reasons);
   // Populate tables
   populateTables();
+
+  //DEV
+  limitWidth();
 });
