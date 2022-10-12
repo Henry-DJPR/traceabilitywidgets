@@ -1,5 +1,7 @@
 // Variables
 var checkedReasons = {};
+var resultsCompiled = false;
+
 const supportTableValues = {
   traceBulk:
     "My system needs to be able to trace bulk products.<span class='extras'><br /><small class='text-muted'>Eg. Tracing bins of product along the supply chain from farm to food transformation.</small></span>",
@@ -130,7 +132,10 @@ function resetForms() {
   $("#dt2startButton").addClass("disabled");
   $("textarea").val("");
   $("input").val("");
+  $("#resultsTables").children().remove();
+  $("#resultsTables").hide();
   populateTables();
+  resultsCompiled = false;
 }
 
 function toggleNotImportant() {
@@ -291,16 +296,47 @@ function addAccessNeedsRow() {
   `);
 }
 
+function appendTable(table) {
+  var newTable = $(table)
+    .clone()
+    .attr("id", $(table).attr("id") + "Results");
+  $("#resultsTables").append(newTable);
+}
+
 function compileResults() {
-  $("#supportTable, #intBus, #custBus, #digitalNeeds, #accessNeeds").each(
-    function () {
-      $("#resultsHidden").append(this);
-    }
+  $("#resultsTables").append("<hr />");
+  $("#resultsTables").append(
+    "<strong>Q2. How can a traceability system support your business operations and processes?</strong><br />"
   );
-  $("#resultsHidden")
-    .children()
+  appendTable("#supportTable");
+  $("#resultsTables").append(
+    "<br /><strong>Q3. How can a traceability system connect with and talk to current systems within your business and along the supply chain?</strong><br />"
+  );
+  $("#resultsTables").append("<i>Internal business systems</i><br />");
+  appendTable("#intBus");
+  $("#resultsTables").append("<i>Supply chain and customer systems</i><br />");
+  appendTable("#custBus");
+  $("#resultsTables").append(
+    "<br /><strong>Q4.	What digital capabilities are available in your business and what do you need to invest in?</strong><br />"
+  );
+  appendTable("#digitalNeeds");
+  $("#resultsTables").append(
+    "<br /><strong>Q5.	What are your data accessibility needs?</strong><br />"
+  );
+  appendTable("#accessNeeds");
+  $("#resultsTables").append("<hr />");
+
+  $("#resultsTables")
+    .find("table")
     .each(function () {
       makeTableStatic($(this));
+    });
+  $("#resultsTables")
+    .find("table")
+    .tableExport({
+      exportButtons: true,
+      formats: ["xlsx"],
+      bootstrap: true,
     });
 }
 
@@ -375,7 +411,15 @@ $(function () {
   $("#btn-fullWidth").click(fullWidth);
 
   //results listener
-  $("#downloadResults").click(compileResults);
+  $("#downloadResults").click(function () {
+    if (resultsCompiled === false) {
+      compileResults();
+      resultsCompiled = true;
+      $("#resultsTables").slideDown();
+    } else {
+      $("#resultsTables").toggle("fast");
+    }
+  });
 
   // Populate tables
   populateTables();
