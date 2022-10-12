@@ -9,6 +9,18 @@
       type="module"
       src="../node_modules/bootstrap/js/dist/tab.js"
     ></script>
+    <script
+      type="module"
+      src="../node_modules/file-saverjs/FileSaver.min.js"
+    ></script>
+    <script
+      type="module"
+      src="../node_modules/xlsx/dist/xlsx.core.min.js"
+    ></script>
+    <script
+      type="module"
+      src="../node_modules/tableexport/dist/js/tableexport.min.js"
+    ></script>
     <script src="./js/app.js"></script>
   </head>
   <body>
@@ -16,32 +28,16 @@
       <div class="row">
         <div class="col bg-secondary">
           <h4>Developer options</h4>
-          <button
-            class="btn btn-primary"
-            onclick="javascript: goTree1()"
-            type="button"
-          >
+          <button class="btn btn-primary" type="button" id="btn-goTree1">
             Tree 1
           </button>
-          <button
-            class="btn btn-primary"
-            onclick="javascript: goTree2()"
-            type="button"
-          >
+          <button class="btn btn-primary" type="button" id="btn-goTree2">
             Tree 2
           </button>
-          <button
-            class="btn btn-primary"
-            onclick="javascript: limitWidth()"
-            type="button"
-          >
+          <button class="btn btn-primary" type="button" id="btn-limitWidth">
             Limit width
           </button>
-          <button
-            class="btn btn-primary"
-            onclick="javascript: fullWidth()"
-            type="button"
-          >
+          <button class="btn btn-primary" type="button" id="btn-fullWidth">
             Full width
           </button>
         </div>
@@ -64,7 +60,6 @@
                   <button
                     class="btn btn-light float-end"
                     id="refreshTree1"
-                    onclick="javascript: resetForms()"
                     type="button"
                     aria-label="refresh"
                   >
@@ -195,10 +190,9 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col text-center">
+                    <div class="col text-center toDelivers">
                       <button
                         class="btn btn-primary"
-                        onclick='javascript: $("#delivers-tab").tab("show");'
                         style="width: 80%"
                         type="button"
                       >
@@ -207,8 +201,7 @@
                     </div>
                     <div class="col text-center">
                       <button
-                        class="btn btn-primary"
-                        onclick='javascript: $("#considering-tab").tab("show");'
+                        class="btn btn-primary toConsidering"
                         style="width: 80%"
                         type="button"
                       >
@@ -233,8 +226,7 @@
                   <div class="row">
                     <div class="col text-center">
                       <button
-                        class="btn btn-primary"
-                        onclick='javascript: $("#emerging-tab").tab("show");'
+                        class="btn btn-primary toEmerging"
                         style="width: 80%"
                         type="button"
                       >
@@ -243,8 +235,7 @@
                     </div>
                     <div class="col text-center">
                       <button
-                        class="btn btn-primary"
-                        onclick='javascript: $("#reasons-tab").tab("show");'
+                        class="btn btn-primary toReasons"
                         style="width: 80%"
                         type="button"
                       >
@@ -269,8 +260,7 @@
                   <div class="row">
                     <div class="col text-center">
                       <button
-                        class="btn btn-primary"
-                        onclick='javascript: $("#fit-tab").tab("show");'
+                        class="btn btn-primary toFit"
                         style="width: 80%"
                         type="button"
                       >
@@ -279,8 +269,7 @@
                     </div>
                     <div class="col text-center">
                       <button
-                        class="btn btn-primary"
-                        onclick='javascript: $("#reasons-tab").tab("show");'
+                        class="btn btn-primary toReasons"
                         style="width: 80%"
                         type="button"
                       >
@@ -388,7 +377,6 @@
                   <div class="text-center">
                     <button
                       class="btn btn-primary mt-3 ms-2 disabled"
-                      onclick='javascript: $("#dt2start-tab").tab("show");'
                       style="width: 50%"
                       type="button"
                       id="dt2startButton"
@@ -412,8 +400,7 @@
                   <div class="row">
                     <div class="col text-center">
                       <button
-                        class="btn btn-primary"
-                        onclick='javascript: $("#reasons-tab").tab("show");'
+                        class="btn btn-primary toReasons"
                         style="width: 80%"
                         type="button"
                       >
@@ -422,8 +409,7 @@
                     </div>
                     <div class="col text-center">
                       <button
-                        class="btn btn-primary"
-                        onclick='javascript: $("#noaction-tab").tab("show");'
+                        class="btn btn-primary toNoaction"
                         style="width: 80%"
                         type="button"
                       >
@@ -474,8 +460,8 @@
                     <button
                       class="btn btn-primary"
                       style="width: 80%"
-                      onclick="javasript: transitionTables()"
                       type="button"
+                      id="nextTable"
                     >
                       Start Decision tree 2:<br />What traceability system is
                       right for your business?
@@ -505,7 +491,6 @@
                   <button
                     class="btn btn-light float-end"
                     id="refreshTree2"
-                    onclick="javascript: resetForms()"
                     type="button"
                     aria-label="refresh"
                   >
@@ -561,6 +546,54 @@
                     support
                   </button>
                 </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    id="connect-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#connect"
+                    type="button"
+                    role="tab"
+                  >
+                    connect
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    id="digital-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#digital"
+                    type="button"
+                    role="tab"
+                  >
+                    digital
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    id="access-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#access"
+                    type="button"
+                    role="tab"
+                  >
+                    access
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    id="results-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#results"
+                    type="button"
+                    role="tab"
+                  >
+                    results
+                  </button>
+                </li>
               </ul>
               <div id="tree2Content" class="tab-content">
                 <div
@@ -570,12 +603,15 @@
                   tabindex="0"
                 >
                   <div
-                    class="bg-secondary my-3"
+                    class="bg-secondary"
                     style="
                       margin-left: -1rem;
                       padding-left: 1rem;
                       margin-right: -1rem;
                       padding-right: 1rem;
+                      margin-top: -1rem;
+                      padding-top: 1rem;
+                      padding-bottom: 1rem;
                     "
                   >
                     <h6
@@ -677,7 +713,6 @@
                     <button
                       class="btn btn-primary disabled"
                       style="width: 80%"
-                      onclick="javascript: t2Continue()"
                       type="button"
                       id="t2Continue"
                     >
@@ -707,17 +742,16 @@
                   role="tabpanel"
                   tabindex="0"
                 >
-                  A fit-for-purpose traceability system does not involve making
-                  <b>radical</b> changes to a business's operational processes.
-                  It should <b>fit into and adapt</b> to how the business
-                  operates and make financial sense.
                   <div
-                    class="bg-secondary my-3"
+                    class="bg-secondary"
                     style="
                       margin-left: -1rem;
                       padding-left: 1rem;
                       margin-right: -1rem;
                       padding-right: 1rem;
+                      margin-top: -1rem;
+                      padding-top: 1rem;
+                      padding-bottom: 1rem;
                     "
                   >
                     <h6
@@ -733,6 +767,10 @@
                       system support your business operations and processes?
                     </h6>
                   </div>
+                  A fit-for-purpose traceability system does not involve making
+                  <b>radical</b> changes to a business's operational processes.
+                  It should <b>fit into and adapt</b> to how the business
+                  operates and make financial sense.<br /><br />
                   Think about how it will:
                   <ul>
                     <li>fit with your daily operations</li>
@@ -740,6 +778,7 @@
                       align with the systems your supply chain customers use
                     </li>
                   </ul>
+                  <button class="btn btn-primary" id="test">test</button>
                   <table class="table table-striped my-4" id="supportTable">
                     <thead>
                       <tr>
@@ -750,7 +789,431 @@
                     </thead>
                     <tbody></tbody>
                   </table>
+                  <div class="text-center">
+                    <button
+                      class="btn btn-primary"
+                      style="width: 80%"
+                      type="button"
+                      id="toConnect"
+                    >
+                      Next
+                    </button>
+                  </div>
                 </div>
+                <div
+                  class="tab-pane fade"
+                  id="connect"
+                  role="tabpanel"
+                  tabindex="0"
+                >
+                  <div
+                    class="bg-secondary"
+                    style="
+                      margin-left: -1rem;
+                      padding-left: 1rem;
+                      margin-right: -1rem;
+                      padding-right: 1rem;
+                      margin-top: -1rem;
+                      padding-top: 1rem;
+                      padding-bottom: 1rem;
+                    "
+                  >
+                    <h6
+                      class="display-6"
+                      style="
+                        font-size: 1.8rem;
+                        font-family: 'VIC-Regular';
+                        padding-left: 3.2rem;
+                        text-indent: -3.2rem;
+                      "
+                    >
+                      <span class="text-muted">Q3.</span> How can a traceability
+                      system connect with and talk to current systems within
+                      your business and along the supply chain?
+                    </h6>
+                  </div>
+                  Remember that your investment in traceability systems
+                  typically has a positive business impact, regardless of your
+                  business size, if you collaborate more with your suppliers and
+                  customers. To achieve this impact, you need to make sure that
+                  your systems communicate with each other. <br /><br />
+                  Use the following table to list all your current business
+                  systems. In the notes/comments column you should provide as
+                  much detail as possible about the system including
+                  manufacturer, version number, etc.
+                  <hr />
+                  <div class="row mt-3">
+                    <div class="col">
+                      <span class="display-6" style="font-size: 1.2rem"
+                        >Internal business systems</span
+                      >
+                    </div>
+                    <div class="col" style="max-width: max-content">
+                      <button class="btn btn-outline-primary" id="intBusNewRow">
+                        + Add row
+                      </button>
+                    </div>
+                  </div>
+                  <table class="table table-striped" id="intBus">
+                    <thead>
+                      <tr>
+                        <th scope="col">Current business system</th>
+                        <th scope="col">Notes/comments</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <span class="extras">
+                        <tr>
+                          <td>
+                            <span class="text-muted"
+                              >Eg. Xero accounting package</span
+                            >
+                          </td>
+                          <td>
+                            <span class="text-muted"
+                              >Needs to dovetail into invoicing/ordering</span
+                            >
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span class="text-muted"
+                              >Eg. iPhone or Android</span
+                            >
+                          </td>
+                          <td>
+                            <span class="text-muted"
+                              >Want to be able to access the system by my
+                              phone/tablet</span
+                            >
+                          </td>
+                        </tr>
+                      </span>
+                      <tr>
+                        <td>
+                          <input
+                            type="text"
+                            placeholder="Business system"
+                            class="form-control"
+                          />
+                        </td>
+                        <td>
+                          <textarea
+                            class="form-control"
+                            style="min-width: 15rem"
+                          ></textarea>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <input
+                            type="text"
+                            placeholder="Business system"
+                            class="form-control"
+                          />
+                        </td>
+                        <td>
+                          <textarea
+                            class="form-control"
+                            style="min-width: 15rem"
+                          ></textarea>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <hr />
+                  <div class="row mt-3">
+                    <div class="col">
+                      <span class="display-6" style="font-size: 1.2rem"
+                        >Supply chain and customer systems</span
+                      ><br />
+                      Consider the points along the supply chain: Farm &#62;
+                      Food transformation &#62; Distribution &#62; Market
+                      (domestic / international) &#62; Wholesaler &#62;
+                      Transport and logistics &#62; Retailer
+                    </div>
+                    <div class="col" style="max-width: max-content">
+                      <button
+                        class="btn btn-outline-primary"
+                        id="custBusNewRow"
+                      >
+                        + Add row
+                      </button>
+                    </div>
+                  </div>
+                  <table class="table table-striped" id="custBus">
+                    <thead>
+                      <tr>
+                        <th scope="col">Company</th>
+                        <th scope="col">Current business systems</th>
+                        <th scope="col">Notes/comments</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <span class="extras">
+                        <tr>
+                          <td>
+                            <span class="text-muted"
+                              >E.g Transport company</span
+                            >
+                          </td>
+                          <td>
+                            <span class="text-muted">Xero | GS1 barcodes</span>
+                          </td>
+                          <td>
+                            <span class="text-muted"
+                              >Must connect to GS1 compatible</span
+                            >
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span class="text-muted">E.g. Retailer</span>
+                          </td>
+                          <td>
+                            <span class="text-muted"
+                              >Retail database and point of sale (POS)
+                              system</span
+                            >
+                          </td>
+                          <td>
+                            <span class="text-muted"
+                              >Must connect to this system</span
+                            >
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span class="text-muted">E.g. Food service</span>
+                          </td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                      </span>
+                      <tr>
+                        <td>
+                          <input
+                            type="text"
+                            placeholder="Company"
+                            class="form-control"
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="text"
+                            placeholder="Current business systems"
+                            class="form-control"
+                          />
+                        </td>
+                        <td>
+                          <textarea
+                            class="form-control"
+                            style="min-width: 15rem"
+                          ></textarea>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <input
+                            type="text"
+                            placeholder="Company"
+                            class="form-control"
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="text"
+                            placeholder="Current business systems"
+                            class="form-control"
+                          />
+                        </td>
+                        <td>
+                          <textarea
+                            class="form-control"
+                            style="min-width: 15rem"
+                          ></textarea>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="text-center">
+                    <button
+                      class="btn btn-primary"
+                      style="width: 80%"
+                      type="button"
+                      id="toDigital"
+                    >
+                      Next
+                    </button>
+                  </div>
+                </div>
+                <div
+                  class="tab-pane fade"
+                  id="digital"
+                  role="tabpanel"
+                  tabindex="0"
+                >
+                  <div
+                    class="bg-secondary"
+                    style="
+                      margin-left: -1rem;
+                      padding-left: 1rem;
+                      margin-right: -1rem;
+                      padding-right: 1rem;
+                      margin-top: -1rem;
+                      padding-top: 1rem;
+                      padding-bottom: 1rem;
+                    "
+                  >
+                    <h6
+                      class="display-6"
+                      style="
+                        font-size: 1.8rem;
+                        font-family: 'VIC-Regular';
+                        padding-left: 3.1rem;
+                        text-indent: -3.1rem;
+                      "
+                    >
+                      <span class="text-muted">Q4.</span> What digital
+                      capabilities are available in your business and what do
+                      you need to invest in?
+                    </h6>
+                  </div>
+                  Consider the staff currently working in your business, their
+                  abilities and current time pressures/availability. How easy
+                  would it be for you to introduce a new process or system with
+                  your current workforce?
+                  <div class="row mt-3">
+                    <div class="col">
+                      <span class="display-6" style="font-size: 1.2rem"
+                        >Digital needs</span
+                      >
+                    </div>
+                    <div class="col" style="max-width: max-content">
+                      <button
+                        class="btn btn-outline-primary"
+                        id="digitalNeedsNewRow"
+                      >
+                        + Add row
+                      </button>
+                    </div>
+                  </div>
+                  <table class="table table-striped" id="digitalNeeds">
+                    <thead>
+                      <tr>
+                        <th scope="col">Person</th>
+                        <th scope="col">Current capability</th>
+                        <th scope="col">Training needs</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <span class="extras">
+                        <tr>
+                          <td>
+                            <span class="text-muted">E.g Business owner</span>
+                          </td>
+                          <td>
+                            <span class="text-muted"
+                              >Office 365 (good with basics)</span
+                            >
+                          </td>
+                          <td>
+                            <span class="text-muted"
+                              >Refresher course to understand additional
+                              functionality</span
+                            >
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span class="text-muted">E.g. QA manager</span>
+                          </td>
+                          <td>
+                            <span class="text-muted"
+                              >In-house designed Excel spreadsheet (proficient
+                              with Excel)</span
+                            >
+                          </td>
+                          <td>
+                            <span class="text-muted"
+                              >Require support to integrate the spreadsheet to a
+                              new system.</span
+                            >
+                          </td>
+                        </tr>
+                      </span>
+                      <tr>
+                        <td>
+                          <input
+                            type="text"
+                            placeholder="Person"
+                            class="form-control"
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="text"
+                            placeholder="Current capability"
+                            class="form-control"
+                          />
+                        </td>
+                        <td>
+                          <textarea
+                            class="form-control"
+                            style="min-width: 15rem"
+                          ></textarea>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <input
+                            type="text"
+                            placeholder="Person"
+                            class="form-control"
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="text"
+                            placeholder="Current capability"
+                            class="form-control"
+                          />
+                        </td>
+                        <td>
+                          <textarea
+                            class="form-control"
+                            style="min-width: 15rem"
+                          ></textarea>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div class="text-center">
+                    <button
+                      class="btn btn-primary"
+                      style="width: 80%"
+                      type="button"
+                      id="toAccess"
+                    >
+                      Next
+                    </button>
+                  </div>
+                </div>
+                <div
+                  class="tab-pane fade"
+                  id="access"
+                  role="tabpanel"
+                  tabindex="0"
+                >
+                  placeholder
+                </div>
+                <div
+                  class="tab-pane fade"
+                  id="results"
+                  role="tabpanel"
+                  tabindex="0"
+                ></div>
               </div>
             </div>
           </div>
