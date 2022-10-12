@@ -178,6 +178,9 @@ function makeTableStatic(table) {
   table.find("textarea").each(function () {
     $(this).parent().html($(this).val());
   });
+  table.find("input[type='text']").each(function () {
+    $(this).parent().html($(this).val());
+  });
 }
 
 function addIntBusRow() {
@@ -254,6 +257,53 @@ function addDigitalBusRow() {
   `);
 }
 
+function addAccessNeedsRow() {
+  $("#accessNeeds>tbody").append(`
+  <tr>
+    <td>
+      <input
+        type="text"
+        placeholder="Purpose"
+        class="form-control"
+      />
+    </td>
+    <td>
+      <input
+        type="text"
+        placeholder="What data"
+        class="form-control"
+      />
+    </td>
+    <td>
+      <input
+        type="text"
+        placeholder="Data source"
+        class="form-control"
+      />
+    </td>
+    <td>
+      <textarea
+        class="form-control"
+        style="min-width: 15rem"
+      ></textarea>
+    </td>
+  </tr>
+  `);
+}
+
+function compileResults() {
+  $("#supportTable, #intBus, #custBus, #digitalNeeds, #accessNeeds").each(
+    function () {
+      $("#resultsHidden").append(this);
+    }
+  );
+  $("#resultsHidden")
+    .children()
+    .each(function () {
+      makeTableStatic($(this));
+    });
+}
+
 // On loaded
 $(function () {
   //Add refresh listeners
@@ -303,6 +353,10 @@ $(function () {
     window.scrollTo(0, 0);
     $("#access-tab").tab("show");
   });
+  $("#toResults").click(function () {
+    window.scrollTo(0, 0);
+    $("#results-tab").tab("show");
+  });
 
   //Add reason selector listeners
   $(
@@ -320,6 +374,9 @@ $(function () {
   $("#btn-limitWidth").click(limitWidth);
   $("#btn-fullWidth").click(fullWidth);
 
+  //results listener
+  $("#downloadResults").click(compileResults);
+
   // Populate tables
   populateTables();
 
@@ -327,10 +384,8 @@ $(function () {
   $("#intBusNewRow").click(addIntBusRow);
   $("#custBusNewRow").click(addCustBusRow);
   $("#digitalNeedsNewRow").click(addDigitalBusRow);
+  $("#accessNeedsNewRow").click(addAccessNeedsRow);
 
   //DEV
   limitWidth();
-  $("#test").click(function () {
-    makeTableStatic($("#supportTable"));
-  });
 });
