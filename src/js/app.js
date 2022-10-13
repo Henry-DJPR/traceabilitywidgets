@@ -17,7 +17,7 @@ const supportTableValues = {
     "Other requirements specific to my business may include<span class='extras'>:<br />(List any that apply in the comments column, here are some examples)<ul><li>My product is subject to Xray screening, and this may damage digital loggers</li><li>Airfreight/seafreight approval is part of my supply chain process</li><li>My product is often subject to additional stickering by other business along the supply chain for transport and logistics purposes</li><li>Logging temperature during transport is essential for demonstrating food safety/customer compliance along the supply chain</li></ul></span>",
 };
 
-// Dev functions
+// Tree selectors
 function goTree1() {
   $("#tree1Row").show();
   $("#tree1Row").attr("aria-hidden", "false");
@@ -26,16 +26,8 @@ function goTree1() {
   resetForms();
 }
 function goTree2() {
-  transitionTables();
+  transitionTrees();
   resetForms();
-}
-function limitWidth() {
-  $("#tree1Row>.col").css("max-width", "600px");
-  $("#tree2Row>.col").css("max-width", "600px");
-}
-function fullWidth() {
-  $("#tree1Row>.col").css("max-width", "100%");
-  $("#tree2Row>.col").css("max-width", "100%");
 }
 
 // functions
@@ -115,7 +107,7 @@ function collateT2Reasons() {
   }
 }
 
-function transitionTables() {
+function transitionTrees() {
   $("#tree1Row").hide();
   $("#tree1Row").attr("aria-hidden", "true");
   $("#tree2Row").show();
@@ -298,6 +290,7 @@ function addAccessNeedsRow() {
 
 function appendTable(table) {
   var newTable = $(table)
+    .parent()
     .clone()
     .attr("id", $(table).attr("id") + "Results");
   $("#resultsTables").append(newTable);
@@ -342,6 +335,45 @@ function compileResults() {
 
 // On loaded
 $(function () {
+  //Initial tree selection and input query selectors
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  const params = Object.fromEntries(urlSearchParams.entries());
+
+  if (params.tree === "1") {
+    //Leave as is
+  } else if (params.tree === "2") {
+    $("#tree1Row").hide();
+    $("#tree1Row").attr("aria-hidden", "true");
+    $("#tree2Row").show();
+    $("#tree2Row").attr("aria-hidden", "false");
+  } else if (params.margin == undefined) {
+    $("#developerOptions").show();
+    $("#tree1Row>.col").removeClass("m-0");
+    $("#tree2Row>.col").removeClass("m-0");
+    $("#tree1Row>.col").removeClass("p-0");
+    $("#tree2Row>.col").removeClass("p-0");
+    $("#tree1Row>.col").addClass("p-4");
+    $("#tree2Row>.col").addClass("p-4");
+  } else {
+    $("#developerOptions").show();
+  }
+
+  if (params.margin === "true") {
+    $("#tree1Row>.col").removeClass("m-0");
+    $("#tree2Row>.col").removeClass("m-0");
+    $("#tree1Row>.col").addClass("p-4");
+    $("#tree2Row>.col").addClass("p-4");
+  }
+
+  if (params.tree1width != undefined) {
+    console.log("madeit");
+    $("#tree1Row .card").css("max-width", params.tree1width);
+  }
+
+  if (params.tree2width != undefined) {
+    $("#tree2Row .card").css("max-width", params.tree2width);
+  }
+
   //Add refresh listeners
   $("#refreshTree1").click(resetForms);
   $("#refreshTree2").click(resetForms);
@@ -375,7 +407,7 @@ $(function () {
     window.scrollTo(0, 0);
     $("#dt2start-tab").tab("show");
   });
-  $("#nextTable").click(transitionTables);
+  $("#nextTable").click(transitionTrees);
   $("#t2Continue").click(t2Continue);
   $("#toConnect").click(function () {
     window.scrollTo(0, 0);
@@ -405,11 +437,6 @@ $(function () {
     "#foodSafe, #marketAccess, #biosecurity, #provenance, #certifications, #productivity, #notImportant"
   ).change(collateT2Reasons);
 
-  $("#btn-goTree2").click(goTree2);
-  $("#btn-goTree1").click(goTree1);
-  $("#btn-limitWidth").click(limitWidth);
-  $("#btn-fullWidth").click(fullWidth);
-
   //results listener
   $("#downloadResults").click(function () {
     if (resultsCompiled === false) {
@@ -424,12 +451,13 @@ $(function () {
   // Populate tables
   populateTables();
 
-  // Add row listeners
+  // Add new row listeners
   $("#intBusNewRow").click(addIntBusRow);
   $("#custBusNewRow").click(addCustBusRow);
   $("#digitalNeedsNewRow").click(addDigitalBusRow);
   $("#accessNeedsNewRow").click(addAccessNeedsRow);
 
   //DEV
-  limitWidth();
+  $("#btn-goTree2").click(goTree2);
+  $("#btn-goTree1").click(goTree1);
 });

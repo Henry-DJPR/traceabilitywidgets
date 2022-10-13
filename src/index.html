@@ -35,26 +35,26 @@
   </head>
   <body>
     <div class="container-fluid">
-      <div class="row">
-        <div class="col bg-secondary">
-          <h4>Developer options</h4>
-          <button class="btn btn-primary" type="button" id="btn-goTree1">
-            Tree 1
-          </button>
-          <button class="btn btn-primary" type="button" id="btn-goTree2">
-            Tree 2
-          </button>
-          <button class="btn btn-primary" type="button" id="btn-limitWidth">
-            Limit width
-          </button>
-          <button class="btn btn-primary" type="button" id="btn-fullWidth">
-            Full width
+      <div
+        class="row py-4 bg-secondary"
+        id="developerOptions"
+        style="display: none"
+        aria-hidden="true"
+      >
+        <div class="col">
+          <h4>Select a decision tree</h4>
+          <button class="btn btn-link" type="button" id="btn-goTree1">
+            Tree 1: Do you currently have a traceability system in your
+            business?</button
+          ><br />
+          <button class="btn btn-link" type="button" id="btn-goTree2">
+            Tree 2: What traceability system is right for your business?
           </button>
         </div>
       </div>
       <div class="row" id="tree1Row">
-        <div class="col align-self-center m-4">
-          <div class="card">
+        <div class="col align-self-center m-0 p-0 justify-content-center">
+          <div class="card mx-auto" style="max-width: 600px">
             <div class="card-header">
               <div class="row">
                 <div class="col">
@@ -82,7 +82,7 @@
                 </div>
               </div>
             </div>
-            <div class="card-body">
+            <div class="card-body" style="overflow-x: auto">
               <ul
                 class="nav nav-tabs"
                 id="tree1Tabset"
@@ -326,7 +326,7 @@
                       id="t1foodSafe"
                     />
                     <label class="form-check-label" for="t1foodSafe">
-                      Food safety (descriptor for each)
+                      Food safety
                     </label>
                   </div>
                   <div class="form-check">
@@ -484,8 +484,8 @@
         </div>
       </div>
       <div class="row" id="tree2Row" style="display: none" aria-hidden="true">
-        <div class="col align-self-center m-4">
-          <div class="card">
+        <div class="col align-self-center m-0 p-0">
+          <div class="card mx-auto" style="max-width: 1200px">
             <div class="card-header">
               <div class="row">
                 <div class="col">
@@ -513,7 +513,7 @@
                 </div>
               </div>
             </div>
-            <div class="card-body">
+            <div class="card-body" style="overflow-x: auto">
               <ul
                 class="nav nav-tabs"
                 id="tree2Tabset"
@@ -650,7 +650,7 @@
                       id="foodSafe"
                     />
                     <label class="form-check-label" for="foodSafe">
-                      Food safety (descriptor for each)
+                      Food safety
                     </label>
                   </div>
                   <div class="form-check">
@@ -788,16 +788,19 @@
                       align with the systems your supply chain customers use
                     </li>
                   </ul>
-                  <table class="table table-striped my-4" id="supportTable">
-                    <thead>
-                      <tr>
-                        <th scope="col">Consideration</th>
-                        <th scope="col">Required</th>
-                        <th scope="col">List your requirements</th>
-                      </tr>
-                    </thead>
-                    <tbody></tbody>
-                  </table>
+
+                  <div class="table-responsive">
+                    <table class="table table-striped my-4" id="supportTable">
+                      <thead>
+                        <tr>
+                          <th scope="col">Consideration</th>
+                          <th scope="col">Required</th>
+                          <th scope="col">List your requirements</th>
+                        </tr>
+                      </thead>
+                      <tbody></tbody>
+                    </table>
+                  </div>
                   <div class="text-center">
                     <button
                       class="btn btn-primary"
@@ -863,69 +866,73 @@
                       </button>
                     </div>
                   </div>
-                  <table class="table table-striped" id="intBus">
-                    <thead>
-                      <tr>
-                        <th scope="col">Current business system</th>
-                        <th scope="col">Notes/comments</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr class="extras">
-                        <td>
-                          <span class="text-muted"
-                            >Eg. Xero accounting package</span
-                          >
-                        </td>
-                        <td>
-                          <span class="text-muted"
-                            >Needs to dovetail into invoicing/ordering</span
-                          >
-                        </td>
-                      </tr>
-                      <tr class="extras">
-                        <td>
-                          <span class="text-muted">Eg. iPhone or Android</span>
-                        </td>
-                        <td>
-                          <span class="text-muted"
-                            >Want to be able to access the system by my
-                            phone/tablet</span
-                          >
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <input
-                            type="text"
-                            placeholder="Business system"
-                            class="form-control"
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            class="form-control"
-                            style="min-width: 15rem"
-                          ></textarea>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <input
-                            type="text"
-                            placeholder="Business system"
-                            class="form-control"
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            class="form-control"
-                            style="min-width: 15rem"
-                          ></textarea>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <div class="table-responsive">
+                    <table class="table table-striped" id="intBus">
+                      <thead>
+                        <tr>
+                          <th scope="col">Current business system</th>
+                          <th scope="col">Notes/comments</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="extras">
+                          <td>
+                            <span class="text-muted"
+                              >Eg. Xero accounting package</span
+                            >
+                          </td>
+                          <td>
+                            <span class="text-muted"
+                              >Needs to dovetail into invoicing/ordering</span
+                            >
+                          </td>
+                        </tr>
+                        <tr class="extras">
+                          <td>
+                            <span class="text-muted"
+                              >Eg. iPhone or Android</span
+                            >
+                          </td>
+                          <td>
+                            <span class="text-muted"
+                              >Want to be able to access the system by my
+                              phone/tablet</span
+                            >
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input
+                              type="text"
+                              placeholder="Business system"
+                              class="form-control"
+                            />
+                          </td>
+                          <td>
+                            <textarea
+                              class="form-control"
+                              style="min-width: 15rem"
+                            ></textarea>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input
+                              type="text"
+                              placeholder="Business system"
+                              class="form-control"
+                            />
+                          </td>
+                          <td>
+                            <textarea
+                              class="form-control"
+                              style="min-width: 15rem"
+                            ></textarea>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                   <hr />
                   <div class="row mt-3">
                     <div class="col">
@@ -946,97 +953,101 @@
                       </button>
                     </div>
                   </div>
-                  <table class="table table-striped" id="custBus">
-                    <thead>
-                      <tr>
-                        <th scope="col">Company</th>
-                        <th scope="col">Current business systems</th>
-                        <th scope="col">Notes/comments</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr class="extras">
-                        <td>
-                          <span class="text-muted">E.g Transport company</span>
-                        </td>
-                        <td>
-                          <span class="text-muted">Xero | GS1 barcodes</span>
-                        </td>
-                        <td>
-                          <span class="text-muted"
-                            >Must connect to GS1 compatible</span
-                          >
-                        </td>
-                      </tr>
-                      <tr class="extras">
-                        <td>
-                          <span class="text-muted">E.g. Retailer</span>
-                        </td>
-                        <td>
-                          <span class="text-muted"
-                            >Retail database and point of sale (POS)
-                            system</span
-                          >
-                        </td>
-                        <td>
-                          <span class="text-muted"
-                            >Must connect to this system</span
-                          >
-                        </td>
-                      </tr>
-                      <tr class="extras">
-                        <td>
-                          <span class="text-muted">E.g. Food service</span>
-                        </td>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <input
-                            type="text"
-                            placeholder="Company"
-                            class="form-control"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            placeholder="Current business systems"
-                            class="form-control"
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            class="form-control"
-                            style="min-width: 15rem"
-                          ></textarea>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <input
-                            type="text"
-                            placeholder="Company"
-                            class="form-control"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            placeholder="Current business systems"
-                            class="form-control"
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            class="form-control"
-                            style="min-width: 15rem"
-                          ></textarea>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <div class="table-responsive">
+                    <table class="table table-striped" id="custBus">
+                      <thead>
+                        <tr>
+                          <th scope="col">Company</th>
+                          <th scope="col">Current business systems</th>
+                          <th scope="col">Notes/comments</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="extras">
+                          <td>
+                            <span class="text-muted"
+                              >E.g Transport company</span
+                            >
+                          </td>
+                          <td>
+                            <span class="text-muted">Xero | GS1 barcodes</span>
+                          </td>
+                          <td>
+                            <span class="text-muted"
+                              >Must connect to GS1 compatible</span
+                            >
+                          </td>
+                        </tr>
+                        <tr class="extras">
+                          <td>
+                            <span class="text-muted">E.g. Retailer</span>
+                          </td>
+                          <td>
+                            <span class="text-muted"
+                              >Retail database and point of sale (POS)
+                              system</span
+                            >
+                          </td>
+                          <td>
+                            <span class="text-muted"
+                              >Must connect to this system</span
+                            >
+                          </td>
+                        </tr>
+                        <tr class="extras">
+                          <td>
+                            <span class="text-muted">E.g. Food service</span>
+                          </td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input
+                              type="text"
+                              placeholder="Company"
+                              class="form-control"
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              placeholder="Current business systems"
+                              class="form-control"
+                            />
+                          </td>
+                          <td>
+                            <textarea
+                              class="form-control"
+                              style="min-width: 15rem"
+                            ></textarea>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input
+                              type="text"
+                              placeholder="Company"
+                              class="form-control"
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              placeholder="Current business systems"
+                              class="form-control"
+                            />
+                          </td>
+                          <td>
+                            <textarea
+                              class="form-control"
+                              style="min-width: 15rem"
+                            ></textarea>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                   <div class="text-center">
                     <button
                       class="btn btn-primary"
@@ -1099,94 +1110,96 @@
                       </button>
                     </div>
                   </div>
-                  <table class="table table-striped" id="digitalNeeds">
-                    <thead>
-                      <tr>
-                        <th scope="col">Person</th>
-                        <th scope="col">Current capability</th>
-                        <th scope="col">Training needs</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr class="extras">
-                        <td>
-                          <span class="text-muted">E.g Business owner</span>
-                        </td>
-                        <td>
-                          <span class="text-muted"
-                            >Office 365 (good with basics)</span
-                          >
-                        </td>
-                        <td>
-                          <span class="text-muted"
-                            >Refresher course to understand additional
-                            functionality</span
-                          >
-                        </td>
-                      </tr>
-                      <tr class="extras">
-                        <td>
-                          <span class="text-muted">E.g. QA manager</span>
-                        </td>
-                        <td>
-                          <span class="text-muted"
-                            >In-house designed Excel spreadsheet (proficient
-                            with Excel)</span
-                          >
-                        </td>
-                        <td>
-                          <span class="text-muted"
-                            >Require support to integrate the spreadsheet to a
-                            new system.</span
-                          >
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <input
-                            type="text"
-                            placeholder="Person"
-                            class="form-control"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            placeholder="Current capability"
-                            class="form-control"
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            class="form-control"
-                            style="min-width: 15rem"
-                          ></textarea>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <input
-                            type="text"
-                            placeholder="Person"
-                            class="form-control"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            placeholder="Current capability"
-                            class="form-control"
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            class="form-control"
-                            style="min-width: 15rem"
-                          ></textarea>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <div class="table-responsive">
+                    <table class="table table-striped" id="digitalNeeds">
+                      <thead>
+                        <tr>
+                          <th scope="col">Person</th>
+                          <th scope="col">Current capability</th>
+                          <th scope="col">Training needs</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="extras">
+                          <td>
+                            <span class="text-muted">E.g Business owner</span>
+                          </td>
+                          <td>
+                            <span class="text-muted"
+                              >Office 365 (good with basics)</span
+                            >
+                          </td>
+                          <td>
+                            <span class="text-muted"
+                              >Refresher course to understand additional
+                              functionality</span
+                            >
+                          </td>
+                        </tr>
+                        <tr class="extras">
+                          <td>
+                            <span class="text-muted">E.g. QA manager</span>
+                          </td>
+                          <td>
+                            <span class="text-muted"
+                              >In-house designed Excel spreadsheet (proficient
+                              with Excel)</span
+                            >
+                          </td>
+                          <td>
+                            <span class="text-muted"
+                              >Require support to integrate the spreadsheet to a
+                              new system.</span
+                            >
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input
+                              type="text"
+                              placeholder="Person"
+                              class="form-control"
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              placeholder="Current capability"
+                              class="form-control"
+                            />
+                          </td>
+                          <td>
+                            <textarea
+                              class="form-control"
+                              style="min-width: 15rem"
+                            ></textarea>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input
+                              type="text"
+                              placeholder="Person"
+                              class="form-control"
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              placeholder="Current capability"
+                              class="form-control"
+                            />
+                          </td>
+                          <td>
+                            <textarea
+                              class="form-control"
+                              style="min-width: 15rem"
+                            ></textarea>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
 
                   <div class="text-center">
                     <button
@@ -1271,131 +1284,133 @@
                       </button>
                     </div>
                   </div>
-                  <table class="table table-striped" id="accessNeeds">
-                    <thead>
-                      <tr>
-                        <th scope="col">Purpose</th>
-                        <th scope="col">What data</th>
-                        <th scope="col">Data source</th>
-                        <th scope="col">
-                          Which points along the supply chain require
-                          visibility?
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr class="extras">
-                        <td>
-                          <span class="text-muted">E.g. Food safety</span>
-                        </td>
-                        <td>
-                          <span class="text-muted">Batch numbers</span>
-                        </td>
-                        <td>
-                          <span class="text-muted">Packing sheets</span>
-                        </td>
-                        <td>
-                          <span class="text-muted"
-                            >Farm, food transformation, retailer</span
-                          >
-                        </td>
-                      </tr>
-                      <tr class="extras">
-                        <td>
-                          <span class="text-muted">E.g. Market access</span>
-                        </td>
-                        <td>
-                          <span class="text-muted"
-                            >Maximum residue limits (MRLs)</span
-                          >
-                        </td>
-                        <td>
-                          <span class="text-muted">Spray diary</span>
-                        </td>
-                        <td>
-                          <span class="text-muted"
-                            >Farm, food transformation, distribution / freight
-                            forwarder and exporter</span
-                          >
-                        </td>
-                      </tr>
-                      <tr class="extras">
-                        <td>
-                          <span class="text-muted">E.g. Provenance</span>
-                        </td>
-                        <td>
-                          <span class="text-muted">Growing location</span>
-                        </td>
-                        <td>
-                          <span class="text-muted">QA records</span>
-                        </td>
-                        <td>
-                          <span class="text-muted"
-                            >Farm, food transformation, market, retailer,
-                            consumer</span
-                          >
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <input
-                            type="text"
-                            placeholder="Purpose"
-                            class="form-control"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            placeholder="What data"
-                            class="form-control"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            placeholder="Data source"
-                            class="form-control"
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            class="form-control"
-                            style="min-width: 15rem"
-                          ></textarea>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <input
-                            type="text"
-                            placeholder="Purpose"
-                            class="form-control"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            placeholder="What data"
-                            class="form-control"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            placeholder="Data source"
-                            class="form-control"
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            class="form-control"
-                            style="min-width: 15rem"
-                          ></textarea>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <div class="table-responsive">
+                    <table class="table table-striped" id="accessNeeds">
+                      <thead>
+                        <tr>
+                          <th scope="col">Purpose</th>
+                          <th scope="col">What data</th>
+                          <th scope="col">Data source</th>
+                          <th scope="col">
+                            Which points along the supply chain require
+                            visibility?
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="extras">
+                          <td>
+                            <span class="text-muted">E.g. Food safety</span>
+                          </td>
+                          <td>
+                            <span class="text-muted">Batch numbers</span>
+                          </td>
+                          <td>
+                            <span class="text-muted">Packing sheets</span>
+                          </td>
+                          <td>
+                            <span class="text-muted"
+                              >Farm, food transformation, retailer</span
+                            >
+                          </td>
+                        </tr>
+                        <tr class="extras">
+                          <td>
+                            <span class="text-muted">E.g. Market access</span>
+                          </td>
+                          <td>
+                            <span class="text-muted"
+                              >Maximum residue limits (MRLs)</span
+                            >
+                          </td>
+                          <td>
+                            <span class="text-muted">Spray diary</span>
+                          </td>
+                          <td>
+                            <span class="text-muted"
+                              >Farm, food transformation, distribution / freight
+                              forwarder and exporter</span
+                            >
+                          </td>
+                        </tr>
+                        <tr class="extras">
+                          <td>
+                            <span class="text-muted">E.g. Provenance</span>
+                          </td>
+                          <td>
+                            <span class="text-muted">Growing location</span>
+                          </td>
+                          <td>
+                            <span class="text-muted">QA records</span>
+                          </td>
+                          <td>
+                            <span class="text-muted"
+                              >Farm, food transformation, market, retailer,
+                              consumer</span
+                            >
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input
+                              type="text"
+                              placeholder="Purpose"
+                              class="form-control"
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              placeholder="What data"
+                              class="form-control"
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              placeholder="Data source"
+                              class="form-control"
+                            />
+                          </td>
+                          <td>
+                            <textarea
+                              class="form-control"
+                              style="min-width: 15rem"
+                            ></textarea>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input
+                              type="text"
+                              placeholder="Purpose"
+                              class="form-control"
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              placeholder="What data"
+                              class="form-control"
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              placeholder="Data source"
+                              class="form-control"
+                            />
+                          </td>
+                          <td>
+                            <textarea
+                              class="form-control"
+                              style="min-width: 15rem"
+                            ></textarea>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
 
                   <div class="text-center">
                     <button
@@ -1433,14 +1448,16 @@
                       Results
                     </h6>
                   </div>
-                  <div class="col-md-6 text-center my-3">
-                    <button
-                      class="btn btn-outline-primary"
-                      id="downloadResults"
-                      style="width: 100%"
-                    >
-                      Show results
-                    </button>
+                  <div class="row justify-content-center">
+                    <div class="col-md-6 text-center my-3">
+                      <button
+                        class="btn btn-outline-primary"
+                        id="downloadResults"
+                        style="width: 100%"
+                      >
+                        Show results
+                      </button>
+                    </div>
                   </div>
                   <div
                     id="resultsTables"
