@@ -138,7 +138,6 @@ function resetForms() {
   $("#resultsTables").children().remove();
   $("#resultsTables").hide();
   populateTables();
-  resultsCompiled = false;
 }
 
 function toggleNotImportant() {
@@ -174,11 +173,7 @@ function makeTableStatic(table) {
   table.find("input.form-check-input:checked").each(function () {
     const input = $(this);
     const val = input.val();
-    if (val === "No") {
-      input.parent().parent().parent().remove();
-    } else {
-      input.parent().parent().html(val);
-    }
+    input.parent().parent().html(val);
   });
   table.find("input.form-check-input").each(function () {
     $(this).parent().parent().html("");
@@ -299,15 +294,9 @@ function addAccessNeedsRow() {
   `);
 }
 
-function appendTable(table) {
-  var newTable = $(table)
-    .parent()
-    .clone()
-    .attr("id", $(table).attr("id") + "Results");
-  $("#resultsTables").append(newTable);
-}
-
 function compileResults() {
+  $("#resultsTables").empty();
+
   $("#resultsTables").append(`
   <table class = "table" id = "Q1">
   <thead>
@@ -347,15 +336,15 @@ function compileResults() {
     });
 
   const wbURL = new URL("../data/Traceability_tree_2.xlsx", import.meta.url);
-  const out = fetch(wbURL)
+  fetch(wbURL)
     .then((resp) => resp.arrayBuffer())
     .then(function (buff) {
-      const workbook = XLSX.read(buff);
+      var workbook = XLSX.read(buff, { sheets: ["Start"] });
       $("#resultsTables")
         .find("table")
         .each(function () {
-          var id = this.id;
-          var thisTable = XLSX.utils.table_to_sheet(this);
+          const id = this.id;
+          const thisTable = XLSX.utils.table_to_sheet(this);
           XLSX.utils.book_append_sheet(workbook, thisTable, id);
         });
       XLSX.writeFile(workbook, "Traceability_results.xlsx");
