@@ -346,7 +346,7 @@ function compileResults() {
       makeTableStatic($(this));
     });
 
-  wbURL = new URL("../data/Traceability_tree_2.xlsx", import.meta.url);
+  const wbURL = new URL("../data/Traceability_tree_2.xlsx", import.meta.url);
   const out = fetch(wbURL)
     .then((resp) => resp.arrayBuffer())
     .then(function (buff) {
