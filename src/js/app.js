@@ -67,7 +67,7 @@ function collateT1Reasons() {
   };
 
   //update tree 2 values
-  for (i in checkedReasons) {
+  for (const i in checkedReasons) {
     $("#" + i).prop("checked", checkedReasons[i]);
   }
 
