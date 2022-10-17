@@ -1,6 +1,7 @@
+import * as XLSX from "xlsx";
+
 // Variables
 var checkedReasons = {};
-var resultsCompiled = false;
 
 const supportTableValues = {
   traceBulk:
@@ -41,6 +42,16 @@ function recodeReasons(text) {
     .replace("certifications", "Product attributes and certifications")
     .replace("productivity", "Productivity and supply chain efficiency");
 }
+
+function recodeTableId(text) {
+  return text
+    .replace("supportTable", "Q2")
+    .replace("intBus", "Q3.1")
+    .replace("custBus", "Q3.2")
+    .replace("digitalNeeds", "Q4")
+    .replace("accessNeeds", "Q5");
+}
+
 function asLi(text) {
   return "<li>" + text + "</li>";
 }
@@ -297,40 +308,59 @@ function appendTable(table) {
 }
 
 function compileResults() {
-  $("#resultsTables").append("<hr />");
-  $("#resultsTables").append(
-    "<strong>Q2. How can a traceability system support your business operations and processes?</strong><br />"
-  );
-  appendTable("#supportTable");
-  $("#resultsTables").append(
-    "<br /><strong>Q3. How can a traceability system connect with and talk to current systems within your business and along the supply chain?</strong><br />"
-  );
-  $("#resultsTables").append("<i>Internal business systems</i><br />");
-  appendTable("#intBus");
-  $("#resultsTables").append("<i>Supply chain and customer systems</i><br />");
-  appendTable("#custBus");
-  $("#resultsTables").append(
-    "<br /><strong>Q4.	What digital capabilities are available in your business and what do you need to invest in?</strong><br />"
-  );
-  appendTable("#digitalNeeds");
-  $("#resultsTables").append(
-    "<br /><strong>Q5.	What are your data accessibility needs?</strong><br />"
-  );
-  appendTable("#accessNeeds");
-  $("#resultsTables").append("<hr />");
+  $("#resultsTables").append(`
+  <table class = "table" id = "Q1">
+  <thead>
+  <tr>
+  <th scope = "col">
+  Driver
+  </th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+  </table>
+  `);
+
+  for (const i in checkedReasons) {
+    if (checkedReasons[i] === true) {
+      $("#resultsTables>#Q1>tbody").append(
+        `<tr><td>${recodeReasons(i)}</td></tr>`
+      );
+    }
+  }
+
+  $("#tree2Row .tab-pane")
+    .not("#results")
+    .find("table")
+    .each(function () {
+      var newTable = $(this)
+        .clone()
+        .attr("id", recodeTableId($(this).attr("id")));
+      $("#resultsTables").append(newTable);
+    });
 
   $("#resultsTables")
     .find("table")
     .each(function () {
       makeTableStatic($(this));
     });
-  $("#resultsTables")
-    .find("table")
-    .tableExport({
-      exportButtons: true,
-      formats: ["xlsx"],
-      bootstrap: true,
-    });
+
+  wbURL = new URL("../data/Traceability_tree_2.xlsx", import.meta.url);
+  const out = fetch(wbURL)
+    .then((resp) => resp.arrayBuffer())
+    .then(function (buff) {
+      const workbook = XLSX.read(buff);
+      $("#resultsTables")
+        .find("table")
+        .each(function () {
+          var id = this.id;
+          var thisTable = XLSX.utils.table_to_sheet(this);
+          XLSX.utils.book_append_sheet(workbook, thisTable, id);
+        });
+      XLSX.writeFile(workbook, "Traceability_results.xlsx");
+    })
+    .catch((err) => console.error(err));
 }
 
 // On loaded
@@ -438,15 +468,7 @@ $(function () {
   ).change(collateT2Reasons);
 
   //results listener
-  $("#downloadResults").click(function () {
-    if (resultsCompiled === false) {
-      compileResults();
-      resultsCompiled = true;
-      $("#resultsTables").slideDown();
-    } else {
-      $("#resultsTables").toggle("fast");
-    }
-  });
+  $("#downloadResults").click(compileResults);
 
   // Populate tables
   populateTables();
