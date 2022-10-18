@@ -35,7 +35,7 @@ function goTree2() {
 function recodeReasons(text) {
   return text
     .replace("#", "")
-    .replace("foodSafe", "Food safety (descriptor for each)")
+    .replace("foodSafe", "Food safety")
     .replace("marketAccess", "Market access")
     .replace("biosecurity", "Biosecurity")
     .replace("provenance", "Provenance (location)")
@@ -138,6 +138,7 @@ function resetForms() {
   $("#resultsTables").children().remove();
   $("#resultsTables").hide();
   populateTables();
+  updateProgress(0);
 }
 
 function toggleNotImportant() {
@@ -154,9 +155,12 @@ function t2Continue() {
   if ($("#notImportant").prop("checked") == true) {
     window.scrollTo(0, 0);
     $("#exit-tab").tab("show");
+    updateProgress(5);
+    $("#progressText").text("Complete");
   } else {
     window.scrollTo(0, 0);
     $("#support-tab").tab("show");
+    updateProgress(1);
   }
 }
 
@@ -352,6 +356,13 @@ function compileResults() {
     .catch((err) => console.error(err));
 }
 
+function updateProgress(n) {
+  const newText = n + " of 5 questions complete";
+  const newPercent = Math.round((n * 100) / 5) + "%";
+  $("#progressText").text(newText);
+  $("#progressBar").attr("aria-valuenow", n).css("width", newPercent);
+}
+
 // On loaded
 $(function () {
   //Initial tree selection and input query selectors
@@ -431,18 +442,22 @@ $(function () {
   $("#toConnect").click(function () {
     window.scrollTo(0, 0);
     $("#connect-tab").tab("show");
+    updateProgress(2);
   });
   $("#toDigital").click(function () {
     window.scrollTo(0, 0);
     $("#digital-tab").tab("show");
+    updateProgress(3);
   });
   $("#toAccess").click(function () {
     window.scrollTo(0, 0);
     $("#access-tab").tab("show");
+    updateProgress(4);
   });
   $("#toResults").click(function () {
     window.scrollTo(0, 0);
     $("#results-tab").tab("show");
+    updateProgress(5);
   });
 
   //Add reason selector listeners
