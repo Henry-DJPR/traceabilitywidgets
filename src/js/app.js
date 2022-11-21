@@ -167,7 +167,7 @@ function t2Continue() {
 function populateTables() {
   $("#supportTable>tbody").children().remove();
   for (const i in supportTableValues) {
-    var newRow = `<tr> <td> ${supportTableValues[i]} </td> <td> <div class="form-check form-check-inline"> <input class="form-check-input" type="radio" name="${i}" id="${i}Yes" value="Yes" /> <label class="form-check-label" for="${i}Yes" >Yes</label > </div> <div class="form-check form-check-inline"> <input class="form-check-input" type="radio" name="${i}" id="${i}No" value="No" /> <label class="form-check-label" for="${i}No" >No</label > </div> </td> <td><textarea class="form-control" placeholder="requirements" id="${i}Requirements" style = "min-width: 15rem;"></textarea></td> </tr> `;
+    var newRow = `<tr> <td> ${supportTableValues[i]} </td> <td> <div class="form-check form-check-inline"> <input class="form-check-input" type="radio" name="${i}" id="${i}Yes" value="Yes" /> <label class="form-check-label" for="${i}Yes" >Yes</label > </div> <div class="form-check form-check-inline"> <input class="form-check-input" type="radio" name="${i}" id="${i}No" value="No" /> <label class="form-check-label" for="${i}No" >No</label > </div> </td> <td><label class = "visually-hidden" for = "${i}Requirements">Requirements</label><textarea class="form-control" placeholder="Requirements" id="${i}Requirements" style = "min-width: 15rem;"></textarea></td> </tr> `;
     $("#supportTable>tbody").append(newRow);
   }
 }
